@@ -16,6 +16,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
+    subparsers.add_parser("auth", help="Autenticar e validar a sessão")
+
     list_parser = subparsers.add_parser("members", help="Listar membros acessíveis")
     list_parser.add_argument("--group", help="@username, ID ou link do grupo")
     list_parser.add_argument("--limit", type=int, default=100)
@@ -41,7 +43,9 @@ async def run(args: argparse.Namespace, settings: Settings) -> None:
     try:
         await authenticate(client)
 
-        if args.command == "members":
+        if args.command == "auth":
+            print("Autenticação validada com sucesso.")
+        elif args.command == "members":
             group = require_group(args.group or settings.source_group, "SOURCE_GROUP")
             members = await get_accessible_participants(
                 client, group, limit=args.limit
