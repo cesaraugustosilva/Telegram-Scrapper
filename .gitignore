@@ -1,0 +1,29 @@
+# Credenciais e configurações locais
+.env
+.env.*
+!.env.example
+
+# Ambiente virtual e temporários
+.venv/
+.tmp/
+__pycache__/
+*.py[cod]
+*.log
+logs/
+
+# Sessões do Telegram (contêm credenciais de acesso)
+*.session
+*.session-journal
+
+# Exportações privadas
+exports/
+export/
+private_exports/
+*.csv
+*.json
+
+# Ferramentas e sistema operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
